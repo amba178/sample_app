@@ -2,77 +2,77 @@ require 'spec_helper'
 
 describe "Static pages" do 
 
-	let(:base_title){"Ruby on Rails Tutorial Sample App "}
-	subject{page}
+	subject{ page }
+
+	#using shared examples to eliminate duplication
+	shared_examples_for "all static pages" do 
+		it { should have_selector('h1', text: heading) }
+		it { should have_title(full_title(page_title)) }
+	end
+
+
 	describe "Home page" do 
 		before { visit root_path}
-		it "should have the content 'Sample App'" do 
-			#visit '/static_pages/home'
-			#visit root_path
-			#expect(page).to have_content('Sample App')
-			should have_content('Sample App')
+		let(:heading) { 'Sample App'}
+		let(:page_title){''}
 
-		end
-
-		it "should have title 'Home" do 
-			#visit '/static_pages/home'
-			#visit root_path
-			#expect(page).to have_title("#{base_title} | Home")
-			should have_title(full_title(''))
-		end
+		it_should_behave_like "all static pages"
+		it { should_not have_title('| Home') }
 	end
 
 	describe "Help page" do 
 		before { visit help_path }
-		it "should have the content 'Help'" do 
-			#visit help_path
-			#expect(page).to have_content('Help')
-			should have_content('Help')
-		end
-
-		it "should have title 'Help" do 
-			#visit '/static_pages/help'
-			#visit help_path
-			#expect(page).to have_title("#{base_title}| Help")
-			#should have_title("#{base_title}| Help")
-			should have_title(full_title('Help'))
-		end
+		let(:heading) { 'Help' }
+		let(:page_title) { 'Help' }
+		it_should_behave_like 'all static pages'
 	end
 
 	describe "About page" do 
 		before { visit about_path}
-		it "should have the content 'About Us'" do 
-			#visit '/static_pages/about'
-			#visit about_path
-			#expect(page).to have_content('About Us')
-			should have_content('About Us')
-		end
-
-		it "should have title 'About" do 
-			#visit '/static_pages/about'
-			#visit about_path
-			#expect(page).to have_title("#{base_title}| About")
-			#should have_title("#{base_title} | About")
-			should have_title(full_title('About'))
-		end
+		let(:heading) { 'About' }
+		let(:page_title) { 'About' }
+		it_should_behave_like 'all static pages'
 	end
 
 	describe "Contact page" do 
 		before { visit contact_path}
-		it "should have the content 'Contact Us'" do 
-			#visit '/static_pages/contact'
-			#visit contact_path
-			#expect(page).to have_content('Contact Us')
-			should have_content('Contact Us')
+		let(:heading) { 'Contact Us' }
+		let(:page_title) { 'Contact Us' }
+		it_should_behave_like 'all static pages'
+	end
+#how to test specific method in controller
+describe UsersController, :type => :controller do
+	describe "GET new" do
+		it "does something" do 
+			get :new
+			response.should be_successful
 		end
+	end
+end
 
-		it "should have title 'Contatc Us'" do 
-			#visit '/static_pages/contact'
-			#visit contact_path
-			#expect(page).to have_title("Ruby on Rails Tutorial Sample App | Contact Us")
-			#should have_title("Ruby on Rails Tutorial Sample App | Contact Us")
-			should have_title(full_title('Contact Us'))
+
+describe "sign up now link and sample app link" do
+		before {visit root_path}
+        it "should have the right links for sign up and sample app " do 
+			click_link "Sign up now!"
+			expect(page).to  have_title(full_title('Sign Up'))
+			click_link "sample app"
+		    expect(page).to have_title(full_title(' '))
 		end
+end
+
+	#testing links on the layout
+	it "should have the right links on the layout" do
+		subject { page }
+		visit root_path 
+	    click_link "About"
+		should have_title(full_title('About Us ')) 
+		click_link "Help"
+		should have_title(full_title('Help'))
+		click_link "Sign in"
+		should have_title(full_title(' '))
+        click_link "Contact"
+		should have_title(full_title('Contact Us'))
 	end
 
 end
