@@ -40,26 +40,25 @@ describe "Static pages" do
 		let(:page_title) { 'Contact Us' }
 		it_should_behave_like 'all static pages'
 	end
-#how to test specific method in controller
-describe UsersController, :type => :controller do
-	describe "GET new" do
-		it "does something" do 
-			get :new
-			response.should be_successful
+	#how to test specific method in controller
+	describe UsersController, :type => :controller do
+		describe "GET new" do
+			it "does something" do 
+				get :new
+				response.should be_successful
+			end
 		end
 	end
-end
-
-
-describe "sign up now link and sample app link" do
-		before {visit root_path}
-        it "should have the right links for sign up and sample app " do 
-			click_link "Sign up now!"
-			expect(page).to  have_title(full_title('Sign Up'))
-			click_link "sample app"
-		    expect(page).to have_title(full_title(' '))
-		end
-end
+	
+	describe "sign up now link and sample app link" do
+			before {visit root_path}
+	        it "should have the right links for sign up and sample app " do 
+				click_link "Sign up now!"
+				expect(page).to  have_title(full_title('Sign Up'))
+				click_link "sample app"
+			    expect(page).to have_title(full_title(' '))
+			end
+	end
 
 	#testing links on the layout
 	it "should have the right links on the layout" do
