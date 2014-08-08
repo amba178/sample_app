@@ -77,4 +77,8 @@ SampleApp::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  #Force all acess to the app over SSL, use Strict-Transportion-security
+  #and use secure cookies
+  config.force_ssl = true
 end
