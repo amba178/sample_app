@@ -1,15 +1,22 @@
+=begin
+	
+rescue #can accept two dots after
+	#VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+	#this fixes the two dots weakness => e
+	#VALID_EMAIL_REGEX = /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
+	
+=end
+
+
+
 class User < ActiveRecord::Base
+	has_secure_password
 	before_save { self.email = email.downcase }
 	validates :name, presence: true, length: { maximum: 50 }
-	#can accept two dots after
-	#VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-	#this fixes the two dots weakness
-	VALID_EMAIL_REGEX = /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
-	validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, 
-	                                  uniqueness: { case_sensitive: false }
-	
-	#validates(:name, presence: true)
-	has_secure_password
+	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
+    validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, 
+	                                  uniqueness: { case_sensitive: false} 
+    #validates(:name, presence: true)
 	validates :password, length: { minimum: 6 }
 
 end

@@ -11,7 +11,6 @@ describe User do
 	before do
 	 @user = User.new(name: "salem", email: "salemamba@gmail.com", password: "foobar",
 	 	                                   password_confirmation: "foobar") 
-	 @user.save
 	end
 
 	subject { @user}
@@ -55,7 +54,7 @@ describe User do
 	describe "when email address is already taken" do 
 	  before do 
 		   user_with_same_email = @user.dup
-		   user_with_same_email.email = @user.email
+		   user_with_same_email.email = @user.email.upcase
 		   user_with_same_email.save
 	  end
 
