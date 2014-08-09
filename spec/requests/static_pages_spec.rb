@@ -51,12 +51,12 @@ describe "Static pages" do
 	end
 	
 	describe "sign up now link and sample app link" do
-			before {visit root_path}
+			before {visit root_path }
 	        it "should have the right links for sign up and sample app " do 
 				click_link "Sign up now!"
 				expect(page).to  have_title(full_title('Sign up'))
 				click_link "sample app"
-			    expect(page).to have_title(full_title(' '))
+			    expect(page).to have_title(full_title(''))
 			end
 	end
 
