@@ -10,6 +10,7 @@ rescue #can accept two dots after
 
 
 class User < ActiveRecord::Base
+	has_many :authentications
 	has_secure_password
 	before_create :create_remember_token
 	before_save { self.email = email.downcase }
@@ -19,12 +20,10 @@ class User < ActiveRecord::Base
 	                                  uniqueness: { case_sensitive: false} 
     #validates(:name, presence: true)
 	validates :password, length: { minimum: 6 }
-
-
-
+    
+    
 	def User.new_remember_token
-
-        SecureRandom.urlsafe_base64
+		SecureRandom.urlsafe_base64
     end
 
     def User.digest(token)

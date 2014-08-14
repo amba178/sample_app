@@ -16,7 +16,9 @@ group :development, :test do
   gem 'database_cleaner', github: 'bmabey/database_cleaner'
 
 end
-
+group :development do 
+      gem 'nifty-generators', '0.4.6'
+end
 group :test do
   gem 'selenium-webdriver', '2.35.1'
   gem 'capybara', '2.1.0'
@@ -33,7 +35,8 @@ gem 'turbolinks', '1.1.1'
 gem 'jbuilder', '1.0.2'
 gem 'bcrypt-ruby', '3.1.2'
 gem 'omniauth-twitter'
-gem 'omniauth-facebook'
+gem 'omniauth'
+
 #gem 'rb-readline'
 
 group :doc do
@@ -90,3 +93,5 @@ end
 # gem 'debugger', group: [:development, :test]
 =end
 
+
+gem "mocha", group: :test

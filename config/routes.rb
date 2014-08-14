@@ -1,5 +1,8 @@
 SampleApp::Application.routes.draw do
 
+  #get "authentications/index"
+ # post "authentications/create"
+ # delete "authentications/destroy"
 #get "users/new"
 
 =begin
@@ -9,13 +12,15 @@ SampleApp::Application.routes.draw do
   get "static_pages/contact"
 =end
 resources :users
+resources :authentications 
 #using resources method to define standard RESTful routes
 resources :sessions, only: [:new, :create, :destroy]
 root 'static_pages#home'
 match '/help', to: 'static_pages#help', via: 'get'
 match '/about', to: 'static_pages#about', via: 'get'
 match '/contact', to: 'static_pages#contact', via: 'get'
-
+#omniauth
+get '/auth/:provider/callback' => 'authentications#create'
 
 #for signup page
 match '/signup', to: 'users#new', via: 'get'
