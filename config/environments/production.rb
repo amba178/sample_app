@@ -81,4 +81,6 @@ SampleApp::Application.configure do
   #Force all acess to the app over SSL, use Strict-Transportion-security
   #and use secure cookies
   config.force_ssl = true
+  #change localhost with your domain name for production
+  #config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 end

@@ -1,0 +1,26 @@
+- if params[:action] == 'index' && params[:controller] == 'authentications'
+ %footer{ class: "auth_footer" }
+  %small
+   %a{href: "http://railstutorial.org/"} Rails Tutorial 
+   by Michael Hartl
+  %nav
+   %ul
+    %li= link_to "About", about_path
+    %li= link_to "Contact", contact_path
+    %li 
+     %a{href: href="http://news.railstutorial.org/"} News
+-else
+ %footer{ class: "footer" }
+  %small
+   %a{href: "http://railstutorial.org/"} Rails Tutorial 
+   by Michael Hartl
+  %nav
+   %ul
+    %li= link_to "About", about_path
+    %li= link_to "Contact", contact_path
+    %li 
+     %a{href: href="http://news.railstutorial.org/"} News
+
+
+
+ 

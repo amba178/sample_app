@@ -1,18 +1,7 @@
-=begin
-	
-rescue #can accept two dots after
-	#VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-	#this fixes the two dots weakness => e
-	#VALID_EMAIL_REGEX = /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
-	
-=end
-
-
-
 class User < ActiveRecord::Base
 	has_many :authentications
 	has_secure_password
-	before_create :create_remember_token
+	before_create :create_remember_token, :unless => :password_required?
 	before_save { self.email = email.downcase }
 	validates :name, presence: true, length: { maximum: 50 }
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
@@ -21,8 +10,7 @@ class User < ActiveRecord::Base
     #validates(:name, presence: true)
 	validates :password, length: { minimum: 6 }
     
-    
-	def User.new_remember_token
+    def User.new_remember_token
 		SecureRandom.urlsafe_base64
     end
 
@@ -30,11 +18,28 @@ class User < ActiveRecord::Base
         Digest::SHA1.hexdigest(token.to_s)
     end
 
+    def apply_omniauth(omniauth)
+    	authentications.build(:provider => omniauth['provider'], 
+			                               :uid => omniauth['uid'] )
+    end
+
+    #i am not using it yet
+    def password_required?
+    	!password.blank?
+    end
+
+    def omniauth_validation?
+    	!session[:omniauth].nil? || session[:omniauth].nil?
+    end
+
     private
 
        def create_remember_token
-           self.remember_token = User.digest(User.new_remember_token)
+       	self.remember_token = User.digest(User.new_remember_token)
+    
        end
+
+       
 
 
 end

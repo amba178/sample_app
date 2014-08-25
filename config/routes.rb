@@ -1,6 +1,9 @@
 SampleApp::Application.routes.draw do
 
   #get "authentications/index"
+  #get "authentications/create"
+  #get "authentications/destroy"
+  #get "authentications/index"
  # post "authentications/create"
  # delete "authentications/destroy"
 #get "users/new"
@@ -13,6 +16,7 @@ SampleApp::Application.routes.draw do
 =end
 resources :users
 resources :authentications 
+#devise_for :users, :controllers => {:registrations => 'registrations'}
 #using resources method to define standard RESTful routes
 resources :sessions, only: [:new, :create, :destroy]
 root 'static_pages#home'

@@ -14,11 +14,14 @@ group :development, :test do
   gem 'childprocess', '0.3.6'
   gem 'cucumber-rails', '1.4.0', :require => false
   gem 'database_cleaner', github: 'bmabey/database_cleaner'
+  gem 'debugger'
 
 end
+
 group :development do 
       gem 'nifty-generators', '0.4.6'
 end
+
 group :test do
   gem 'selenium-webdriver', '2.35.1'
   gem 'capybara', '2.1.0'
@@ -35,7 +38,11 @@ gem 'turbolinks', '1.1.1'
 gem 'jbuilder', '1.0.2'
 gem 'bcrypt-ruby', '3.1.2'
 gem 'omniauth-twitter'
+gem 'omniauth-facebook'
 gem 'omniauth'
+gem 'haml-rails'
+gem 'devise'
+
 
 #gem 'rb-readline'
 

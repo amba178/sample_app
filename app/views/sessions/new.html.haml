@@ -1,0 +1,16 @@
+- provide(:title, "Sign in") 
+%h1 Sign in
+%div{class: "row" }
+ %div{ class: "span6 offset3" }
+  = form_tag sessions_path do 
+
+   = label :session, :email , 'Email' 
+   = text_field :session, 'email', placeholder: 'Enter your email address',required: true
+
+   = label :session, :password, 'Password' 
+   = password_field :session, 'password', placeholder: "Enter your password", required: true 
+
+   = submit_tag 'Sign in', class: "btn btn-large btn-primary" 
+  %p 
+   New user?
+   = link_to "Sign up now!", signup_path 

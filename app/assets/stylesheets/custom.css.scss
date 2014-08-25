@@ -165,6 +165,10 @@ li #twitter{
 	float: left;
 	margin-left: 0px;
 }
+.bar{
+	color: white;
+	line-height: 3;
+}
 /*
 
 #logo:hover {
@@ -177,7 +181,6 @@ li #twitter{
 
 
 footer {
-  
   margin-top: 45px;
   padding-top: 5px;
   border-top: 1px solid $grayMediumLight;
@@ -193,6 +196,7 @@ footer {
 	float: left;
 	margin-left: 10px;
     }
+
   }
   a {
 	color: $gray;
@@ -203,8 +207,10 @@ footer {
 
 }
 
+/*omniauth footer */
+
 .auth_footer {
-  margin-top: 150px;
+  margin-top: 120px;
   padding-top: 5px;
   border-top: 1px solid $grayMediumLight;
   color: $lightGray;
@@ -219,6 +225,7 @@ footer {
 	float: left;
 	margin-left: 10px;
     }
+
   }
   a {
 	color: $gray;
@@ -228,8 +235,6 @@ footer {
    }
 
 }
-
-
 /*
 footer small {
 	float: left;
@@ -254,10 +259,12 @@ footer a:hover {
 } 
 */
 
-
-
-/* authentications */
-
+/*authentications */
+.statment_signin_signup{
+	margin-top: 85px;
+	position: absolute;
+	
+}
 
 .authentications {
   margin-bottom: 30px;
@@ -272,9 +279,7 @@ footer a:hover {
   -moz-border-radius: 8px;
   -webkit-border-radius: 8px;
   position: relative;
-
   margin-right: 10px;
-
 }
 
 .authentication .remove {
@@ -312,17 +317,11 @@ footer a:hover {
   display: block;
 }
 
- div.normal_signin {
-	margin-top: 120px;
-	margin-bottom: 70px;
-    position: absolute;
-	left: 124px;
-}
-
 .auth_provider {
   float: left;
   text-decoration: none;
   margin-right: 20px;
   text-align: center;
+  margin-top: 0px;
   margin-bottom: 10px;
 }
