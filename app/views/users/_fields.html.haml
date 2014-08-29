@@ -1,0 +1,12 @@
+= render 'shared/error_messages' 
+= f.label :name 
+= f.text_field :name, placeholder: "Enter your real name here", required: true
+
+= f.label :email 
+= f.text_field :email , placeholder: "Enter your email here", required: true
+
+= f.label :password 
+= f.password_field :password, placeholder: "Enter your new password", required: true
+
+= f.label :password_confirmation, "Confirmation" 
+= f.password_field :password_confirmation, placeholder: "Enter again your new password"

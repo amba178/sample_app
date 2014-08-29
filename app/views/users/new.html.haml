@@ -5,21 +5,7 @@
  .span6.offset3
   -#= session[:omniauth].inspect
   = form_for(@user) do |f| 
-   = render 'shared/error_messages' 
-
-   = f.label :name 
-   = f.text_field :name, placeholder: "Enter your real name here", required: true
-
-   = f.label :email 
-   = f.text_field :email , placeholder: "Enter your email here", required: true
-
-   - if session[:omniauth].nil?
-  
-    = f.label :password 
-    = f.password_field :password, placeholder: "Enter your new password", required: true
-
-    = f.label :password_confirmation, "Confirmation" 
-    = f.password_field :password_confirmation, placeholder: "Enter again your new password"
+   = render 'fields.html.haml', f: f
 
    = f.submit "Create my account", class: "btn btn-large btn-primary" 
 
