@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
    
 	has_many :authentications
+    has_many :microposts, dependent: :destroy
 	has_secure_password
 	before_create :create_remember_token
 	before_save { self.email = email.downcase }
@@ -23,6 +24,11 @@ class User < ActiveRecord::Base
     def apply_omniauth(omniauth)
     	authentications.build(:provider => omniauth['provider'], 
 			                               :uid => omniauth['uid'] )
+    end
+
+    def feed
+        # This is premliminary. See "Following users" for the full implementation.
+        Micropost.where("user_id = ?", id)
     end
 
     #i am not using it yet

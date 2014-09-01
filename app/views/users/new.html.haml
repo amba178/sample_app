@@ -5,6 +5,7 @@
  .span6.offset3
   -#= session[:omniauth].inspect
   = form_for(@user) do |f| 
+   = render 'shared/error_messages', object: f.object
    = render 'fields.html.haml', f: f
 
    = f.submit "Create my account", class: "btn btn-large btn-primary" 

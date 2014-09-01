@@ -12,6 +12,7 @@ class UsersController < ApplicationController
   def index
     #@users = User.all
     @users = User.paginate(page: params[:page])
+
   end
 
   def show
@@ -34,6 +35,7 @@ class UsersController < ApplicationController
     session[:omniauth]=nil
 =end
    @user = User.find(params[:id])
+   @microposts = @user.microposts.paginate(page: params[:page] )
   end
 
   def create
@@ -87,13 +89,7 @@ class UsersController < ApplicationController
                                    :password_confirmation)
     end
 
-    #before filter
-    def signed_in_user
-      unless signed_in?
-        store_location
-        redirect_to signin_url, notice: "Please sign in."
-      end
-    end
+   
 
     def correct_user
       @user = User.find(params[:id])
