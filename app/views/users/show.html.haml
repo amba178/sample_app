@@ -5,9 +5,12 @@
   %aside{ class: "span4" }
    %section 
     %h1
-     = @user.name
      = gravatar_for @user
+     = @user.name
+   %section
+    = render 'shared/stats'
   %div.span8
+   = render 'follow_form' if signed_in?
    - if @user.microposts.any?
     %h3 
      Microposts 

@@ -14,12 +14,18 @@ SampleApp::Application.routes.draw do
   get "static_pages/about"
   get "static_pages/contact"
 =end
-resources :users
+resources :users do 
+  member do
+    get :following, :followers
+  end
+end
+
 resources :authentications 
 #devise_for :users, :controllers => {:registrations => 'registrations'}
 #using resources method to define standard RESTful routes
 resources :sessions, only: [:new, :create, :destroy]
 resources :microposts, only: [:create, :destroy]
+resources :relationships, only: [:create, :destroy]
 
 root 'static_pages#home'
 match '/help', to: 'static_pages#help', via: 'get'
